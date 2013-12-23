@@ -7,12 +7,11 @@ class Countdown
 		is_started? && time_to_finish <= 0
 	end
 	def decrease (seconds)
-		decreased_countdown = new_countdown(@seconds - seconds)
+		decreased_countdown = Countdown.new(@seconds - seconds)
 		decreased_countdown.started_at(@started_moment) if is_started?
 	end
 	def start
-		started_countdown = new_countdown(@seconds)
-		started_countdown.started_at(now)
+		Countdown.new(@seconds).started_at(now)
 	end
 	
 	protected
@@ -34,8 +33,5 @@ class Countdown
 	end
 	def time_to_finish
 		finished_moment - now
-	end
-	def new_countdown (seconds)
-		Countdown.new(seconds)
 	end
 end
